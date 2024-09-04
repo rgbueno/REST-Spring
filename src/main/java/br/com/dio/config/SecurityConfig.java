@@ -47,14 +47,20 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity httpSecurity) throws Exception {
-
+		/*
 		httpSecurity.csrf().disable()
-				.authorizeRequests().antMatchers("/auth/signin").permitAll()
-				.antMatchers("/produto/**").hasAnyRole("ADMIN")
-				.antMatchers("/pedido/**").authenticated()
-				.anyRequest().authenticated().and()
-				.exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint).and()
-				.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+		.authorizeRequests().antMatchers("/auth/signin").permitAll()
+		.anyRequest().authenticated().and()
+		.exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint).and()
+		.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);*/
+		
+		httpSecurity.csrf().disable()
+		.authorizeRequests().antMatchers("/auth/signin").permitAll()
+		.antMatchers("/produto/*").hasAnyAuthority("ADMIN")
+		.antMatchers("/pedido/*").authenticated()
+		.anyRequest().authenticated().and()
+		.exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint).and()
+		.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
 		httpSecurity.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
 	}

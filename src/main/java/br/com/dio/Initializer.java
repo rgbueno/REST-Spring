@@ -39,6 +39,5 @@ public class Initializer {
 		user.setRoles(Arrays.asList(roleAdmin));
 
 		userService.save(user);
-
 	}
 }
