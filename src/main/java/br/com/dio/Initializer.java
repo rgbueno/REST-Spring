@@ -26,7 +26,7 @@ public class Initializer {
 	public void criaUsuariosEPermissoes() {
 		Role roleAdmin = new Role();
 
-		roleAdmin.setName("USER");
+		roleAdmin.setName("ADMIN");
 
 		roleService.save(roleAdmin);
 
